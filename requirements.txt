@@ -1,0 +1,7 @@
+pandas>=2.2
+pandas-gbq>=0.23
+google-cloud-bigquery>=3.25
+db-dtypes>=1.2
+dbt-bigquery>=1.8
+sqlfluff>=3.1
+sqlfluff-templater-dbt>=3.1

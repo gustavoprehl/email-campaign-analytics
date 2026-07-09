@@ -1,0 +1,25 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# dbt
+dbt_project/profiles.yml
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+
+# Credenciais GCP
+*service-account*.json
+*credentials*.json
+gcp-key.json
+
+# Power BI (arquivos temporários de trabalho)
+bi/*.pbix.tmp
+~$*.pbix
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
