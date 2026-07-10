@@ -26,14 +26,26 @@ select
     mes,
     trimestre,
     case mes
-        when 1 then 'Janeiro' when 2 then 'Fevereiro' when 3 then 'Marco'
-        when 4 then 'Abril' when 5 then 'Maio' when 6 then 'Junho'
-        when 7 then 'Julho' when 8 then 'Agosto' when 9 then 'Setembro'
-        when 10 then 'Outubro' when 11 then 'Novembro' when 12 then 'Dezembro'
+        when 1 then 'Janeiro'
+        when 2 then 'Fevereiro'
+        when 3 then 'Marco'
+        when 4 then 'Abril'
+        when 5 then 'Maio'
+        when 6 then 'Junho'
+        when 7 then 'Julho'
+        when 8 then 'Agosto'
+        when 9 then 'Setembro'
+        when 10 then 'Outubro'
+        when 11 then 'Novembro'
+        when 12 then 'Dezembro'
     end as nome_mes,
     case dia_semana_num
-        when 1 then 'Domingo' when 2 then 'Segunda-feira' when 3 then 'Terca-feira'
-        when 4 then 'Quarta-feira' when 5 then 'Quinta-feira' when 6 then 'Sexta-feira'
+        when 1 then 'Domingo'
+        when 2 then 'Segunda-feira'
+        when 3 then 'Terca-feira'
+        when 4 then 'Quarta-feira'
+        when 5 then 'Quinta-feira'
+        when 6 then 'Sexta-feira'
         when 7 then 'Sabado'
     end as dia_semana,
     dia_semana_num in (1, 7) as flg_fim_de_semana

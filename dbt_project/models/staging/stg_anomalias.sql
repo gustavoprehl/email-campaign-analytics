@@ -1,5 +1,5 @@
 -- Gabarito de anomalias injetadas artificialmente no projeto 1, usado para
--- validar a deteccao de anomalias e para cruzamento com as metricas de performance.
+-- validar a deteccao de anomalias e cruzar com as metricas de performance.
 -- Fonte: gabarito_anomalias (raw)
 select
     id_campanha,

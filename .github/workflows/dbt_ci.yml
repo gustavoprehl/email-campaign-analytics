@@ -1,0 +1,39 @@
+name: dbt CI
+
+on: [push]
+
+jobs:
+  dbt-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install dbt-bigquery sqlfluff sqlfluff-templater-dbt
+
+      - name: Configure dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          echo "${{ secrets.DBT_PROFILES_YML }}" > ~/.dbt/profiles.yml
+
+      - name: dbt deps
+        working-directory: dbt_project
+        run: dbt deps
+
+      - name: dbt compile
+        working-directory: dbt_project
+        run: dbt compile
+
+      - name: dbt test
+        working-directory: dbt_project
+        run: dbt test
+
+      - name: sqlfluff lint
+        working-directory: dbt_project
+        run: sqlfluff lint models/ --dialect bigquery --templater dbt

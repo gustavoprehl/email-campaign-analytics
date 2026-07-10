@@ -19,5 +19,4 @@ select
     a.tipo_anomalia_injetada
 from {{ ref('fato_agregado_diario') }} as f
 left join {{ ref('stg_anomalias') }} as a
-    on f.id_campanha = a.id_campanha
-    and f.id_disparo = a.id_disparo
+    on f.id_campanha = a.id_campanha and f.id_disparo = a.id_disparo
