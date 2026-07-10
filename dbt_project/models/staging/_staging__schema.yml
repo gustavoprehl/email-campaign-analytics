@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: stg_marcas
+    description: Marcas anunciantes donas das campanhas de e-mail marketing.
+    columns:
+      - name: id_marca
+        description: Identificador unico da marca.
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_campanhas
+    description: Campanhas (jornadas) de e-mail marketing.
+    columns:
+      - name: id_campanha
+        description: Identificador unico da campanha.
+        tests:
+          - not_null
+          - unique
+      - name: tipo_campanha
+        description: Categoria da campanha.
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - institucional
+                  - pos_venda
+                  - promocional
+                  - reimpactacao
+
+  - name: stg_subscribers
+    description: Contatos (subscribers) que recebem as campanhas.
+    columns:
+      - name: id_subscriber
+        description: Identificador unico do subscriber.
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_eventos
+    description: Eventos individuais gerados por disparo de campanha (estrutura longa, uma linha por evento).
+    columns:
+      - name: id_evento
+        description: Identificador unico do evento.
+        tests:
+          - not_null
+          - unique
+      - name: tipo_evento
+        description: Tipo do evento de e-mail marketing.
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - sent
+                  - open
+                  - click
+                  - bounce
+                  - unsubscribe
+
+  - name: stg_anomalias
+    description: Gabarito de anomalias injetadas artificialmente no projeto 1, por campanha e disparo.
+    columns:
+      - name: id_campanha
+        description: Identificador da campanha (parte da chave composta com id_disparo).
+        tests:
+          - not_null
+      - name: id_disparo
+        description: Identificador do disparo dentro da campanha (parte da chave composta com id_campanha).
+        tests:
+          - not_null
+      - name: tipo_anomalia_injetada
+        description: Tipo de anomalia injetada artificialmente; nulo quando flg_anomalia_injetada e falso.
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - clique_bot
+                  - pico_engajamento
+                  - queda_deliverability
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - id_campanha
+              - id_disparo

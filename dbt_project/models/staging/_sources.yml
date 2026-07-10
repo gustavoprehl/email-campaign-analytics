@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: email_campaign_raw
+    database: "{{ target.project }}"
+    schema: email_campaign_raw
+    description: >
+      Dataset raw carregado via ingestion/load_to_bigquery.py a partir dos
+      CSVs do projeto email-campaign-anomaly-detection.
+    tables:
+      - name: dim_marca
+      - name: dim_campanha
+      - name: dim_subscriber
+      - name: fato_evento
+      - name: gabarito_anomalias
