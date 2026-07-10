@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: dim_data
+    description: >
+      Dimensao calendario diaria (2025-07-01 a 2026-06-30), usada como Date
+      Table no Power BI para medidas de serie temporal.
+    columns:
+      - name: dat_referencia
+        description: Data (grao diario), chave primaria da dimensao.
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_marca
+    description: Marcas anunciantes donas das campanhas de e-mail marketing.
+    columns:
+      - name: id_marca
+        description: Identificador unico da marca.
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_campanha
+    description: Campanhas (jornadas) de e-mail marketing.
+    columns:
+      - name: id_campanha
+        description: Identificador unico da campanha.
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_subscriber
+    description: Contatos (subscribers) que recebem as campanhas.
+    columns:
+      - name: id_subscriber
+        description: Identificador unico do subscriber.
+        tests:
+          - not_null
+          - unique
