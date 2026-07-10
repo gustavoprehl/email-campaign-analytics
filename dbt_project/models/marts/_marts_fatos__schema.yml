@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: fato_agregado_diario
+    description: >
+      Fato de performance por campanha e disparo, com metricas de funil e
+      taxas calculadas via SAFE_DIVIDE (taxa_abertura, ctr, ctor).
+    columns:
+      - name: id_campanha
+        description: Identificador da campanha (parte da chave composta com id_disparo).
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_campanha')
+                field: id_campanha
+      - name: id_disparo
+        description: Identificador do disparo dentro da campanha (parte da chave composta com id_campanha).
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - id_campanha
+              - id_disparo
+
+  - name: fato_anomalias
+    description: >
+      fato_agregado_diario enriquecido com o gabarito de anomalias injetadas
+      pelo projeto email-campaign-anomaly-detection.
+    columns:
+      - name: id_campanha
+        description: Identificador da campanha (parte da chave composta com id_disparo).
+        tests:
+          - not_null
+      - name: id_disparo
+        description: Identificador do disparo dentro da campanha (parte da chave composta com id_campanha).
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - id_campanha
+              - id_disparo
