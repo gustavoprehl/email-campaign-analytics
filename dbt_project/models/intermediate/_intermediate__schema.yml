@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: int_funil_por_disparo
+    description: >
+      Metricas de funil (enviados, entregues, abertos, clicks) agregadas por
+      campanha e disparo a partir de stg_eventos.
+    columns:
+      - name: id_campanha
+        description: Identificador da campanha (parte da chave composta com id_disparo).
+        tests:
+          - not_null
+      - name: id_disparo
+        description: Identificador do disparo dentro da campanha (parte da chave composta com id_campanha).
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - id_campanha
+              - id_disparo
