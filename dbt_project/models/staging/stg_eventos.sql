@@ -5,6 +5,6 @@ select
     id_campanha,
     id_subscriber,
     tipo_evento,
-    timestamp(dat_evento) as dat_evento,
-    id_disparo
+    id_disparo,
+    timestamp(dat_evento) as dat_evento
 from {{ source('email_campaign_raw', 'fato_evento') }}
