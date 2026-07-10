@@ -1,0 +1,25 @@
+# Exemplo de profiles.yml para o projeto email_campaign_analytics.
+#
+# Este arquivo NAO contem credenciais reais. Copie para "profiles.yml" nesta
+# mesma pasta (dbt_project/profiles.yml, ja ignorado pelo git) e ajuste os
+# valores para o seu projeto no GCP.
+#
+# Autenticacao local: use "method: oauth", que reaproveita as Application
+# Default Credentials geradas por "gcloud auth application-default login" -
+# nao precisa de arquivo de chave de service account na sua maquina.
+#
+# Autenticacao em CI (GitHub Actions): use "method: service-account" com
+# "keyfile_json: '{{ env_var("GCP_SA_KEY_JSON") }}'" (ver Etapa 7 / dbt_ci.yml).
+
+email_campaign_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: your-gcp-project-id
+      dataset: email_campaign_dbt
+      location: US
+      threads: 4
+      job_execution_timeout_seconds: 300
+      job_retries: 1
