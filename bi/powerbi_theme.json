@@ -1,0 +1,17 @@
+{
+  "name": "Email Campaign Analytics",
+  "dataColors": [
+    "#8B5CF6",
+    "#14B8A6",
+    "#F97316",
+    "#38BDF8",
+    "#F472B6",
+    "#FBBF24",
+    "#94A3B8",
+    "#34D399"
+  ],
+  "tableAccent": "#8B5CF6",
+  "good": "#14B8A6",
+  "neutral": "#FBBF24",
+  "bad": "#EF4444"
+}
